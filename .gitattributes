@@ -1,0 +1,10 @@
+# Normalise line endings so a Windows checkout and a Linux clone agree.
+* text=auto eol=lf
+
+# Batch files need CRLF: `goto :label` misbehaves with LF-only line endings.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+*.png binary
+*.ico binary
+*.jpg binary

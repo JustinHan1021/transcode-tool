@@ -1,0 +1,22 @@
+# 运行态文件由程序自己生成
+.ffcache.json
+trans.config.json
+启动错误.log
+*.log
+
+# 打包产物与随包 ffmpeg（200MB+，用 build_exe.py 重新生成 / 自行下载）
+bin/
+dist/
+build/
+*.spec
+
+# 自检生成的测试素材（约 400MB，跑 selftest/corpus.py 可重建）
+_corpus/
+_probe_*/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
