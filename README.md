@@ -43,15 +43,26 @@
 
 ### 方式一：用打包好的程序（不用装任何东西）
 
+到 [**Releases 页面**](../../releases/latest) 下载 `转码工具-windows-x64.zip`（约 120MB），
+解压后双击里面的 `转码工具.exe`。**不需要装 Python，也不需要装 ffmpeg**。
+
 ```
-转码工具.exe        <- 双击这个，ffmpeg 已经打在里面
-_internal\         <- 运行时（约 200MB）
+转码工具\
+    转码工具.exe        <- 双击这个
+    _internal\         <- 运行时 + 内置 ffmpeg（解压后约 227MB）
+    LICENSE            <- 本程序（MIT）
+    THIRD-PARTY-NOTICES.md
+    licenses\GPL-3.0.txt
 ```
 
 整个文件夹拷到别的电脑就能用。首次启动约 4 秒（要做一次 ffmpeg 能力探测），之后 **0.7 秒**。
 
-> 需要自己打包的话见 [build_exe.py](build_exe.py)：
+> 要自己打包的话见 [build_exe.py](build_exe.py)：
 > `python build_exe.py` 生成文件夹版（推荐），`--onefile` 生成单文件版（每次启动要解压 200MB，会慢十几秒）。
+
+> 为什么发布的是压缩包而不是单个 exe：内置 ffmpeg 就有 200MB，做成单文件 exe 的话
+> **每次启动都要把它解压到临时目录**，每次等十几秒。文件夹版启动只要 1 秒以内。
+> 压缩包约 120MB（ffmpeg 本身的体积压不太动）。
 
 ### 方式二：用源码运行
 
@@ -257,4 +268,13 @@ docs/screenshots/     README 用的截图
 
 ## 许可
 
-[MIT](LICENSE)。ffmpeg 本身是 LGPL/GPL，打包分发时请遵守其许可。
+本程序源码用 [MIT](LICENSE)。
+
+但需要说清楚：内置的 ffmpeg 是 **GPLv3**（这份构建启用了 `--enable-gpl`，链接了 libx264 / libx265）。
+所以**再分发整个下载包时需要一并带上 GPLv3 全文和源码获取途径** —— Release 包已经这样做了。
+
+- 用这个工具转码 → 不受影响，输出归你
+- 改本程序源码 → 按 MIT，没有额外义务
+- 转发下载包 → 整个压缩包一起转，别只挑 exe
+
+细节、以及"想换成 LGPL 构建摆脱 GPL"的做法，见 [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md)。

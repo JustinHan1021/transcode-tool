@@ -10,6 +10,9 @@ dist/
 build/
 *.spec
 
+# 发布包构建中间目录（由 selftest/make_release.py 生成）
+_release/
+
 # 自检生成的测试素材（约 400MB，跑 selftest/corpus.py 可重建）
 _corpus/
 _probe_*/
