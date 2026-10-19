@@ -69,9 +69,13 @@ python 转码工具.pyw          # 或者双击 启动.bat
 2. 解压后把 `ffmpeg.exe` 和 `ffprobe.exe` 一起放进本程序的 `bin\` 文件夹
 3. 启动。界面右下角会显示识别到的版本
 
-程序查找 ffmpeg 的顺序是：`手动指定` → `程序目录\bin\` → `PATH` → winget / chocolatey / scoop / `C:\ffmpeg` → 其它软件自带的（OBS、Blender 等）。找到后会把路径记在 `trans.config.json`，下次直接用。
+程序查找 ffmpeg 的顺序是：`手动指定` → `程序目录\bin\` → `PATH` → winget / chocolatey / scoop / `C:\ffmpeg` → 其它软件自带的（OBS、Blender、Tecplot 等）。找到后会把路径记在 `trans.config.json`，下次直接用。
 
-`ffprobe` 是可选的：没有它程序会退回去解析 `ffmpeg -i` 的输出，功能不受影响。
+> **一定把自己那份放进 `bin\`。** 最后那步兜底会整盘搜索其它软件自带的 ffmpeg，很容易翻出一个很旧的版本（实测在一台装了 Tecplot 的机器上找到的是 **4.3.1**）。旧版能转码，但**硬件编码调不通**（NVENC 接口与当前驱动不兼容）、**动画 WebP 只能输出不能输入**。程序的查找顺序是"先自己的 `bin\`，再整盘搜"，所以只要 `bin\` 里放了新版，就一定优先用新版。
+>
+> `ffmpeg.exe` 和 `ffprobe.exe` 请成对放置：两者来自不同构建时，读文件信息和转码可能得出不一致的结果。
+
+`ffprobe` 严格来说是可选的：没有它程序会退回去解析 `ffmpeg -i` 的输出，功能不受影响。
 
 可选：`pip install tkinterdnd2` 之后可以把文件**直接拖进窗口**；没装也不影响使用，用「添加文件」或把文件拖到 `启动.bat` 上一样可以导入。
 
