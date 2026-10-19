@@ -21,7 +21,7 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-ZIP = ROOT / "_release" / "转码工具-windows-x64.zip"
+ZIP = ROOT / "_release" / "transcode-tool-windows-x64.zip"
 CORPUS = ROOT / "_corpus" / "video"
 
 user32 = ctypes.windll.user32

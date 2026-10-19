@@ -43,7 +43,9 @@
 
 ### 方式一：用打包好的程序（不用装任何东西）
 
-到 [**Releases 页面**](../../releases/latest) 下载 `转码工具-windows-x64.zip`（约 120MB），
+[![下载](https://img.shields.io/badge/下载-v1.0.0-2ea44f?style=flat-square)](../../releases/latest)
+
+到 [**Releases 页面**](../../releases/latest) 下载 `transcode-tool-windows-x64.zip`（**84.8 MB**），
 解压后双击里面的 `转码工具.exe`。**不需要装 Python，也不需要装 ffmpeg**。
 
 ```
@@ -55,14 +57,14 @@
     licenses\GPL-3.0.txt
 ```
 
-整个文件夹拷到别的电脑就能用。首次启动约 4 秒（要做一次 ffmpeg 能力探测），之后 **0.7 秒**。
+整个文件夹拷到别的电脑就能用。首次启动约 2–4 秒（要做一次 ffmpeg 能力探测并缓存），之后 **0.7 秒**。
 
 > 要自己打包的话见 [build_exe.py](build_exe.py)：
 > `python build_exe.py` 生成文件夹版（推荐），`--onefile` 生成单文件版（每次启动要解压 200MB，会慢十几秒）。
+> 组发布包用 `python selftest/make_release.py`，它是按"连许可文件一起打进去"来写的。
 
 > 为什么发布的是压缩包而不是单个 exe：内置 ffmpeg 就有 200MB，做成单文件 exe 的话
 > **每次启动都要把它解压到临时目录**，每次等十几秒。文件夹版启动只要 1 秒以内。
-> 压缩包约 120MB（ffmpeg 本身的体积压不太动）。
 
 ### 方式二：用源码运行
 

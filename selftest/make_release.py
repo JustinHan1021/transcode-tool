@@ -20,7 +20,10 @@ ROOT = Path(__file__).resolve().parent.parent
 DIST = ROOT / "dist" / "转码工具"
 STAGE = ROOT / "_release"
 TOP = "转码工具"
-OUT = ROOT / "_release" / "转码工具-windows-x64.zip"
+# ASCII file name on purpose: the release asset name comes from this, and
+# `gh release create` dropped the leading CJK characters, shipping an asset
+# literally called "-windows-x64.zip". The folder inside is still 转码工具.
+OUT = ROOT / "_release" / "transcode-tool-windows-x64.zip"
 
 EXTRA = ["LICENSE", "THIRD-PARTY-NOTICES.md", "licenses/GPL-3.0.txt", "README.md"]
 
